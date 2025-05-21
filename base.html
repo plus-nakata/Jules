@@ -1,46 +1,466 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="utf-8">
+    <!-- ここにページタイトルが入ります -->
+    <title><!-- ページタイトル --></title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyApp</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="/your_select/wp-content/themes/your_select/font/new/Marcellus-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    <style>
+/* 5.1 ヘッダー スタイル */
+.c-new-header {
+  /* 高さ: 可変（コンテンツに依存）-> CSSで直接指定はせず、内容物によって決まる */
+  padding: 24px 32px 14px; /* デスクトップ */
+  background-color: var(--color-F3F0E1, #F3F0E1); /* フォールバックカラーも指定 */
+  border-bottom: 2px solid var(--color-040404, #040404);
+  position: sticky;
+  top: 0;
+  z-index: 11;
+  /* ロゴ幅、検索アイコンサイズは画像や要素自体で調整 */
+  /* アニメーション効果はJavaScriptと連動するため、ここではクラス準備のみ想定 */
+}
+
+/* モバイル時のヘッダーパディング */
+@media screen and (max-width: 767px) {
+  .c-new-header {
+    padding: 16px 24px 14px;
+  }
+  /* モバイル時のロゴ幅などは、実際の要素に応じて調整 */
+}
+
+/* ヘッダーナビゲーションスタイル */
+.c-new-header nav a {
+  font-family: "Marcellus", serif; /* Marcellusフォントを指定 */
+  font-size: var(--16px, 1rem);
+  color: var(--color-828282, #828282);
+  margin-right: 30px; /* 項目間隔 */
+  text-decoration: none;
+}
+
+.c-new-header nav a:last-child {
+  margin-right: 0;
+}
+
+.c-new-header nav a.active, /* アクティブなリンクのクラス名を .active と仮定 */
+.c-new-header nav a:hover { /* ホバー時も同様のスタイルを適用 */
+  color: var(--color-040404, #040404);
+}
+
+/* 矢印アイコンやサブメニューのスタイルは、具体的なHTML構造やJS実装に応じて追加 */
+
+/* プレースホルダーのスタイル（任意） */
+.logo-placeholder, .search-icon-placeholder {
+    border: 1px dashed #ccc;
+    padding: 10px;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* 5.2 メインビジュアル スタイル */
+.main-visual {
+  /* 高さ: 可変（アスペクト比維持） */
+  /* 画像サイズ: 1200px × 800px（オリジナル）-> コンテンツ画像で指定 */
+  /* レスポンシブ調整: 100%幅、高さ自動 -> .main-visual img で指定想定 */
+  /* border-radius は画像自体や包含要素に適用検討 */
+}
+
+.main-visual .main-image-placeholder { /* 画像プレースホルダーのスタイル */
+    width: 100%;
+    height: auto; /* アスペクト比維持のため */
+    background-color: #eee; /* ダミー背景色 */
+    text-align: center;
+    padding: 50px 0; /* ダミーの高さ */
+    border-radius: 0px; /* デスクトップでは40pxとあるが、画像自体に適用するか、このコンテナに適用するかはデザインによる。一旦0px */
+}
+
+@media screen and (min-width: 768px) { /* タブレット以上 */
+    .main-visual .main-image-placeholder {
+        /* border-radius: 40px; */ /* デザイン指示より。画像自体に適用することを推奨 */
+    }
+}
+
+.main-visual .title-area {
+  /* 幅: 52.78%（デスクトップ）、100%（モバイル） */
+  /* フォントサイズ（見出し）: 24px / 1.5rem（デスクトップ）、20px / 1.25rem（モバイル）-> H1で指定 */
+  margin-top: 16px; /* マージン上部 */
+  padding: 0 24px; /* コンテナ余白に合わせるか、個別に設定 */
+}
+
+@media screen and (min-width: 768px) { /* タブレット以上 */
+  .main-visual .title-area {
+    width: 52.78%;
+    padding: 0 40px;
+  }
+}
+
+.main-visual .title-area h1 {
+    font-size: var(--20px, 1.25rem); /* モバイル */
+    font-weight: 700; /* H1スタイルとして別途定義推奨 */
+    line-height: 1.5; /* H1スタイルとして別途定義推奨 */
+    color: var(--color-040404, #040404); /* H1スタイルとして別途定義推奨 */
+}
+
+@media screen and (min-width: 768px) { /* タブレット以上 */
+    .main-visual .title-area h1 {
+        font-size: var(--24px, 1.5rem); /* デスクトップ */
+    }
+}
+
+/* 5.3 パンくず スタイル */
+.breadcrumb-nav {
+  padding: 12px 16px;
+  font-size: var(--10px, 0.625rem);
+  /* スクロール: hidden（横スクロール可能だが非表示）-> overflow-x: auto; と scrollbar-width: none; or ::-webkit-scrollbar { display: none; } で実現 */
+  overflow-x: auto;
+  white-space: nowrap; /* パンくずが折り返さないように */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.breadcrumb-nav::-webkit-scrollbar { /* Chrome, Safari, Opera */
+  display: none;
+}
+
+.breadcrumb-nav ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* 横並びにする */
+}
+
+.breadcrumb-nav li {
+  display: inline-block;
+}
+
+.breadcrumb-nav li:not(:last-child)::after {
+  content: ">"; /* 区切り記号の例。manual.mdでは矢印（6px × 6px、-45度回転border）だが、簡略化のため > を使用 */
+  /* 実際の矢印アイコンはSVGやCSSボーダーで作成し、contentに設定するか、疑似要素で別途スタイリング */
+  margin: 0 8px 0 12px; /* 間隔: 8px 12px */
+  color: var(--color-828282, #828282); /* 区切り文字の色 */
+  /* 
+  // CSSで矢印を作る場合の例 (別途調整が必要)
+  // display: inline-block;
+  // width: 6px;
+  // height: 6px;
+  // border-top: 1px solid var(--color-828282, #828282);
+  // border-right: 1px solid var(--color-828282, #828282);
+  // transform: rotate(-45deg);
+  // margin: 0 12px 0 8px; // manual.mdの記述に合わせる場合
+  */
+}
+
+.breadcrumb-nav a {
+  color: var(--color-209DD2, #209DD2); /* リンク色 */
+  text-decoration: none;
+}
+
+.breadcrumb-nav a:hover {
+  opacity: .7;
+}
+
+.breadcrumb-nav li[aria-current="page"] {
+  color: var(--color-505050, #505050); /* 現在のページのテキスト色 */
+}
+
+/* 4. レイアウトシステム & メインコンテンツエリア スタイル */
+.container {
+  max-width: 960px; /* メインコンテナ最大幅 */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px; /* モバイル時のコンテナ余白 */
+}
+
+.main-content {
+  /* メインエリアのスタイル */
+}
+
+.sidebar {
+  /* サイドバーのスタイル */
+}
+
+/* デスクトップ時の2カラムレイアウト */
+@media screen and (min-width: 768px) { /* タブレット以上 */
+  .container {
+    padding: 0 40px; /* デスクトップ時のコンテナ余白 */
+    display: flex;
+    gap: 24px; /* カラム間のギャップ */
+  }
+
+  .main-content {
+    width: 70%; /* メインエリア幅 */
+  }
+
+  .sidebar {
+    width: 30%; /* サイドバー幅 */
+  }
+}
+
+/* 基本的なセクション内余白 */
+.main-content section, .sidebar section { /* 仮にセクションタグを使う場合 */
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+@media screen and (min-width: 768px) { /* タブレット以上 */
+  .main-content section, .sidebar section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+/* 記事セクション: 交互に背景色を変えた縞模様レイアウト (例) */
+.main-content .article-section:nth-child(odd) {
+    /* background-color: var(--color-F1F8FC, #F1F8FC); /* 超淡い青など */
+}
+.main-content .article-section:nth-child(even) {
+    /* background-color: #fff; */
+}
+
+
+/* 本文テキストスタイル (3. タイポグラフィシステムより) */
+.main-content p, .sidebar p { /* 基本のPタグに適用 */
+    font-size: var(--14px, 0.875rem);
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--color-040404, #040404);
+    margin-bottom: var(--16px, 1rem); /* 段落間のマージン */
+}
+
+/* H2 (セクションタイトル) スタイル (3. タイポグラフィシステムより) */
+.main-content h2, .sidebar h3 { /* H2とサイドバーのH3に適用する例 */
+    font-size: var(--16px, 1rem);
+    font-weight: 600;
+    line-height: normal; /* manual.mdより */
+    color: var(--color-040404, #040404); /* 指定がなければデフォルトテキストカラー */
+    /* H2特有のスタイル */
+    /* 背景色: #fff */
+    /* パディング: 16px */
+    /* ボーダーラジアス: 16px */
+    /* 右側に青いアクセント（var(--color-58C0ED)）-> 疑似要素などで実装 */
+    margin-bottom: var(--16px, 1rem); /* 見出し下のマージン */
+}
+
+/* H3 (サブセクションタイトル) スタイル (3. タイポグラフィシステムより) */
+.main-content h3 {
+    font-size: var(--16px, 1rem);
+    font-weight: 600;
+    line-height: normal;
+    /* 左ボーダー: 10px solid var(--color-6AC6EE) */
+    /* 背景色: #fff */
+    /* パディング: 12px 8px */
+    /* ボーダーラジアス: 0 16px 16px 0 */
+    margin-bottom: var(--12px, 0.75rem);
+}
+
+/* H4 (項目タイトル) スタイル (3. タイポグラフィシステムより) */
+.main-content h4 {
+    font-size: var(--16px, 1rem);
+    font-weight: 600;
+    line-height: normal;
+    /* 下ボーダー: 1px solid #fff */ /* 背景が#fffの場合見えないので注意 */
+    /* パディング: 8px */
+    /* 左側に青い円アイコン（var(--color-6AC6EE)） -> 疑似要素などで実装 */
+    margin-bottom: var(--8px, 0.5rem);
+}
+
+/* 5.4 ランキングカード（商品ボックス）スタイル */
+/* 9. リファレンス実装 CSS例 - 商品ボックス（Product Box） */
+.product-box {
+  /* container-name: product-box; */ /* コンテナクエリを使用する場合 */
+  /* container-type: inline-size; */ /* コンテナクエリを使用する場合 */
+  position: relative;
+  padding: 24px 16px; /* padding-inline と padding-block を統合 */
+  margin-block-start: 16px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(0,0,0,.08);
+}
+
+.product-box.recommend { /* おすすめ商品のスタイル */
+  border: 2px solid var(--color-F4785D, #F4785D); /* アクセント赤系を仮定（仕様書にF4785Dの定義は直接ないが、recommendの例から推測）*/
+  border-radius: 0 12px 12px 12px; /* 右上以外の角丸を維持 */
+}
+
+.product-box.recommend::before {
+  content: "編集部のおすすめ"; /* テキストはダミーまたは設定可能に */
+  position: absolute;
+  width: fit-content;
+  top: -2px; /* ボーダー幅を考慮 */
+  left: -2px; /* ボーダー幅を考慮 (manual.mdでは-8pxだが、親のborderと重なるため調整) */
+  font-size: var(--10px, 0.625rem);
+  background: var(--color-F4785D, #F4785D); /* 同上 */
+  color: #fff;
+  padding-inline: 16px;
+  padding-block: 2px;
+  border-radius: 0 0 8px 0; /* 右下のみ角丸 */
+  /* transform: scale(0.9); */ /* 必要に応じてスケール調整 */
+}
+
+.product-box .product-image-placeholder { /* 商品画像プレースホルダー */
+    width: 100%;
+    /* max-width: 100%; */ /* img, picture のグローバルスタイルで設定済み想定 */
+    aspect-ratio: 1 / 1; /* 正方形（1:1）推奨 */
+    background-color: #f0f0f0; /* ダミー背景 */
+    margin-bottom: 16px; /* 画像下のマージン */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    border-radius: 8px; /* 画像自体に角丸を設ける場合 */
+}
+
+.product-box h3 { /* 商品タイトル */
+    font-size: var(--18px, 1.125rem);
+    font-weight: 700;
+    color: var(--color-040404, #040404);
+    margin-bottom: 8px;
+}
+
+.product-box .price { /* 価格表示 */
+    font-size: var(--18px, 1.125rem);
+    color: var(--color-FF4620, #FF4620); /* 仕様書ではFF4620だが、定義がないためダミー赤 */
+    font-weight: bold; /* 価格を太字に */
+    margin-bottom: 16px;
+}
+
+/* CTAボタン共通スタイル */
+.product-box__cta__button {
+  margin-block-start: 8px; /* 各ボタンの上のマージンを調整 */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-direction: column; */ /* manual.mdのCSS例ではcolumnだが、通常横並びなのでコメントアウト */
+  /* gap: 10px; */ /* columnの場合のgap */
+  height: 60px;
+  width: 100%;
+  font-size: var(--14px, 0.875rem);
+  font-weight: 700;
+  text-align: center;
+  border-radius: 34px;
+  text-shadow: 1px 1px 0px rgba(4,4,4,.4);
+  box-shadow: 0px 2px 0px 0px rgba(80,80,80,.2);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.product-box__cta__button:hover {
+    opacity: .8;
+}
+
+/* 個別CTAボタンカラー */
+.product-box__cta__button.amazon {
+  background-color: var(--color-FFB800, #FFB800);
+}
+
+.product-box__cta__button.rakuten {
+  background-color: var(--color-FF7070, #FF7070);
+}
+
+.product-box__cta__button.yahoo {
+  background-color: var(--color-FF8D40, #FF8D40);
+}
+
+.product-box__cta__button.other {
+  background-color: var(--color-46B5E5, #46B5E5);
+}
+
+/* ボタン間のマージン（最初のボタン以外） */
+.product-box__cta__button + .product-box__cta__button {
+    margin-block-start: 10px; /* manual.mdのgap: 10px に相当するマージン */
+}
+</style>
+    <!-- CSS変数をここに定義します（カラー、フォントサイズなど） -->
+    <!-- グローバルスタイルとリセットCSSをここに記述します -->
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">MyApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-            </ul>
+    <!-- ヘッダーセクション -->
+    <header class="c-new-header">
+        <!-- サイトロゴがここに入ります（例: <img src="path/to/logo.png" alt="サイト名">） -->
+        <div class="logo-placeholder">サイトロゴ</div>
+        <!-- 検索アイコンがここに入ります -->
+        <div class="search-icon-placeholder">検索ICON</div>
+        <!-- ナビゲーションがここに入ります -->
+        <nav>
+            <!-- ナビゲーション項目はここに追加・複製します -->
+            <a href="#">ナビゲーションリンク1</a>
+        </nav>
+    </header>
+
+    <!-- メインビジュアルセクション -->
+    <section class="main-visual">
+        <!-- メイン画像がここに入ります (例: <img src="path/to/main-image.jpg" alt="メインビジュアル">) -->
+        <div class="main-image-placeholder">メイン画像</div>
+        <!-- タイトルエリア -->
+        <div class="title-area">
+            <h1><!-- ページメインタイトル (H1) --></h1>
         </div>
+    </section>
+
+    <!-- パンくずリスト -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <!-- パンくずリスト項目はここに追加・複製します -->
+        <ol>
+            <li><a href="/">ホーム</a></li>
+            <li><a href="/category/">カテゴリー</a></li>
+            <li aria-current="page"><!-- 現在のページ名 --></li>
+        </ol>
     </nav>
 
-    <div class="container mt-4">
-        {% block content %}{% endblock %}
+    <!-- メインコンテンツエリア -->
+    <div class="container">
+        <main class="main-content">
+            <!-- メインコンテンツはここに記述します -->
+            <h2><!-- セクションタイトル (H2) --></h2>
+            <p><!-- ここに本文が入ります。ダミーテキストです。 -->Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+            <!-- ランキングカード（商品ボックス）の例 -->
+            <!-- この部分を複製して商品を追加します -->
+            <div class="product-box">
+                <div class="product-image-placeholder">商品画像</div>
+                <h3><!-- 商品名 --></h3>
+                <p class="price"><!-- 価格 -->価格: ¥XX,XXX</p>
+                <!-- CTAボタン -->
+                <div class="cta-buttons">
+                    <button class="product-box__cta__button amazon">Amazonで購入</button>
+                    <button class="product-box__cta__button rakuten">楽天で購入</button>
+                    <button class="product-box__cta__button yahoo">Yahoo!で購入</button>
+                    <button class="product-box__cta__button other">公式サイト</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- サイドバー -->
+        <aside class="sidebar">
+            <!-- サイドバーコンテンツはここに記述します -->
+            <h3>サイドバーセクション</h3>
+            <p>サイドバーのコンテンツです。</p>
+        </aside>
     </div>
 
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container text-center">
-            <span class="text-muted">© 2023 MyApp. All rights reserved.</span>
-        </div>
+    <!-- フッターセクション -->
+    <footer>
+        <!-- サイトロゴ（フッター用）がここに入ります -->
+        <div class="footer-logo-placeholder">フッターサイトロゴ</div>
+        <!-- フッターナビゲーション -->
+        <nav class="footer-nav">
+            <!-- フッターナビゲーション項目はここに追加・複製します -->
+            <a href="/about">会社概要</a>
+            <a href="/privacy">プライバシーポリシー</a>
+        </nav>
+        <!-- コピーライト情報 -->
+        <p class="copyright">&copy; <!-- 現在年 --> <!-- 会社名／組織名 -->. All Rights Reserved.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/static/js/script.js"></script>
+    <!-- ページトップへ戻るボタン -->
+    <button class="page-top-button" aria-label="ページトップへ戻る">↑</button>
+
+    <!-- JavaScriptファイルやインラインスクリプトはここに記述します -->
+    <!-- 例: <script src="path/to/script.js"></script> -->
+    <!-- Q&Aアコーディオンなどのインタラクション用スクリプトは manual.md を参照してください -->
+
 </body>
 </html>
