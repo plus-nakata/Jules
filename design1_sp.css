@@ -1,0 +1,432 @@
+/* design1_sp.css - max-width: 640px */
+
+/* General overrides for spacing or layout if needed */
+.wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* 1. Header (from "ヘッダー・メインビジュアル") */
+.header {
+    height: 48px; /* SP height */
+    padding: 0 10px;
+}
+.header .logo img {
+    width: 130px; /* Slightly smaller logo for SP */
+    height: 32px;
+}
+.header .title {
+    font-size: 1.6rem; /* Smaller title */
+    margin-left: 10px;
+}
+.header .goto_top {
+    font-size: 1.3rem;
+}
+/* Hamburger menu button styling (if not already in sp.css or needs theme adjustment) */
+/* Example: .hamburger_icon { display: block; ... } */
+/* The actual hamburger button seems to be missing in base.html, common.js might inject or handle it. */
+/* For now, assume it's handled elsewhere or will be added if structure is provided. */
+
+/* 2. Main Visual (from "ヘッダー・メインビジュアル") */
+.main_visual {
+    height: auto; /* Variable height for SP */
+    padding: 15px 0;
+}
+.main_visual .wrap {
+    flex-direction: column; /* Stack elements if any text was beside image */
+}
+.main_visual .sub_title {
+    font-size: 1.3rem;
+    padding: 4px 8px;
+    /* Adjust positioning if needed, or make it static flow */
+    position: static;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.main_visual h1 {
+    /* The base.html uses separate img tags for PC/SP, sp.css handles visibility */
+}
+.main_visual h1 img.mv.sp {
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio, base HTML has height 262 */
+    max-height: 262px; /* Respect height from HTML if it's a guide */
+}
+/* Main Title Text if it was separate */
+/* Assuming a structure like this if text is separate */
+.main_visual .main_text_content h1, /* Example: if there is a text h1 in main visual */
+body.design1 #body.design1_mv .main_visual h1 { /* More specific for text based h1 in MV if needed */
+    font-size: 2.4rem !important; /* SP Main Title - Ensure this is for a text element, not the image's h1 */
+}
+
+
+/* 3. TOP3 Area (from "TOP3エリア", "レスポンシブ対応") */
+.select_top3 > .wrap > .title { /* "人気〇〇 TOP3" */
+    font-size: 1.8rem; /* Adjusted section title (PC: 2.2rem) */
+}
+.top3_spec_table {
+    display: block; /* Change from table to block for overflow */
+    width: 100%;
+    overflow-x: auto; /* Horizontal scroll */
+    white-space: nowrap; /* Prevent wrapping of table cells */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+.top3_spec_table tr {
+    display: inline-block; /* Arrange rows side-by-side effectively making columns */
+    vertical-align: top;
+    white-space: normal; /* Allow content within cells to wrap */
+}
+.top3_spec_table td, .top3_spec_table th {
+    /* display: block; /* Each cell becomes a block if not using inline-block for tr */
+    /* min-width: 250px; /* Ensure columns have some width */
+    /* border-bottom: 1px solid var(--border-color-gray); */
+}
+.top3_spec_table td.rank,
+.top3_spec_table td.image,
+.top3_spec_table td.contents,
+.top3_spec_table td.cta {
+    display: block; /* Stack cells within each "column" (original row) */
+    width: 280px; /* Fixed width for each scrollable item */
+    padding: 10px;
+    border-right: 1px solid var(--border-color-gray); /* Separator for scrolled items */
+}
+.top3_spec_table tr:last-child td { /* This selector might not work as expected with display:inline-block on tr */
+    /* border-right: none; */ /* Reconsider if this is necessary or how to achieve it */
+}
+/* A better approach for last item's border if tr are inline-block */
+.top3_spec_table td.cta:last-child { /* If cta is always the last logical cell in a "row" */
+    border-right: none;
+}
+
+
+.top3_spec_table .image img.image {
+    height: 120px; /* Adjust image height for SP */
+}
+.top3_spec_table .image .name {
+    font-size: 1.6rem;
+}
+.top3_spec_table th[colspan="3"] { /* These headers won't make sense in scrolled view */
+    /* Consider hiding or restructuring them for SP */
+    display: none; /* Simplest approach */
+}
+/* Alternative for TOP3 headers: make them part of each item */
+/* This would require HTML changes or more complex CSS */
+
+.top3_spec_table .contents.evaluation .sougou { font-size: 1.6rem; }
+.top3_spec_table .price .value { font-size: 1.6rem; }
+.top3_spec_table .feature,
+.top3_spec_table .support,
+.top3_spec_table .campaign ul {
+    font-size: 1.3rem; /* Smaller text for content within TOP3 */
+    text-align: left;
+    padding-left: 5px; /* Reduce padding */
+}
+.top3_spec_table .campaign ul {
+    padding-left: 15px;
+}
+
+
+/* 4. Card Design (from "フェーズ6", "レスポンシブ対応") */
+.service .card {
+    padding: 8px; /* SP padding */
+    margin-bottom: 30px;
+}
+.service .card .head .name {
+    font-size: 2.7rem; /* カード見出し SP (PC: 3.2rem) */
+}
+.service .card .head .image { /* Ranking icon */
+    width: 50px;
+    height: 50px;
+    margin-right: 8px;
+}
+
+.service .card .tag_wrap {
+    gap: 8px;
+    margin: 12px 0;
+    flex-wrap: wrap; /* Allow tags to wrap */
+}
+.service .card .tag {
+    font-size: 1.3rem; /* Smaller tag text */
+    padding: 6px 10px;
+    /* min-width: auto; /* Remove min-width */
+}
+.service .card .tag:before {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+}
+
+.service .card .intro {
+    flex-direction: column; /* Stack image and basic info */
+    gap: 12px;
+}
+.service .card .intro > a > .image { /* Product image */
+    width: 100%; /* Full width */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    height: auto;
+}
+.service .card .basic {
+    width: 100%; /* Full width */
+    margin-top: 12px; /* From example CSS */
+}
+.service .card .evaluation { font-size: 1.5rem; }
+.service .card .evaluation .star_wrap { font-size: 20px; }
+.service .card .sougou { font-size: 1.5rem; }
+.service .card .catchcopy {
+    font-size: 1.5rem; /* Catchy copy SP size */
+}
+.service .card .text { /* "強調したいポイント" */
+    font-size: 1.4rem; /* Body text SP (PC: 1.6rem) */
+}
+
+.service .button_area { margin: 20px auto 0; }
+.service .button_area .message { font-size: 1.4rem; }
+
+.service .card .contents_title { font-size: 1.6rem; } /* Section headline SP (PC: 2.2rem, but this is inner title) */
+.service .card .campaign .coupon_link img.sp { /* Ensure SP coupon image is used */
+    display: block;
+}
+.service .card .campaign .coupon_link img.pc {
+    display: none;
+}
+.service .card .campaign .campaign_item { font-size: 1.4rem; }
+
+.service .card .spec_table { /* div container for spec items */
+    flex-direction: column; /* Stack spec items */
+}
+.service .card .spec_table .item {
+    width: 100%; /* Full width for each spec item */
+    border-right: none; /* Remove right border */
+    border-bottom: 1px solid var(--border-color-gray); /* Add bottom border */
+}
+.service .card .spec_table .item:last-child {
+    border-bottom: none;
+}
+.service .card .spec_table .spec_title { font-size: 1.5rem; }
+.service .card .spec_table .spec_content { font-size: 1.4rem; min-height: auto; padding: 10px;}
+
+.service .card .learn_skill .list { gap: 8px; }
+.service .card .learn_skill .item img { width: 50px; }
+
+.service .card .kuchikomi_list {
+    grid-template-columns: 1fr; /* Single column for reviews */
+    gap: 12px;
+}
+.service .card .kuchikomi_head .human { width: 40px; height: 52px; }
+.service .card .kuchikomi_head .inner .title { font-size: 1.5rem; }
+.service .card .kuchikomi_head .inner .author { font-size: 1.2rem; }
+.service .card .kuchikomi_item > .text { font-size: 1.3rem; }
+.service .card .kuchikomi_item .quote { font-size: 1.1rem; }
+
+.service .card .osusume_reason { padding: 12px; }
+.service .card .osusume_reason .recommend_point .icon { width: 40px; height: 40px; }
+.service .card .osusume_reason p { font-size: 1.4rem; }
+
+
+/* 5. CTA Button Design (from "CTAボタンデザイン", "レスポンシブ対応") */
+.official_link_d1 {
+    width: 100%; /* Full width for SP */
+    font-size: 1.8rem; /* SP font size (PC: 2rem) */
+    height: 50px; /* Adjust height for SP if needed */
+    /* line-height: 50px; */
+}
+.official_link_d1::after { /* Arrow */
+    /* Adjust size or margin if needed */
+}
+
+
+/* 6. Comparison Table (SPEC_LIST) (from "比較テーブル", "レスポンシブ対応") */
+/* "スマホ表示ではカード形式に変更し縦長レイアウト" */
+.spec_list .tab_wrap .tab {
+    /* Could make tabs scrollable if too many */
+    display: flex;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+}
+.spec_list .tab_wrap .tab_button {
+    padding: 8px 12px;
+    font-size: 1.5rem; /* Smaller tab font */
+    flex-grow: 0; /* Don't allow tabs to take equal width if scrolling */
+    flex-shrink: 0; /* Prevent shrinking when scrolling */
+    white-space: nowrap; /* Prevent text wrapping in tab button */
+    text-align: center;
+}
+
+.spec_list .list.tab_contents .item { /* Each product row becomes a card */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.spec_list .list.tab_contents .item .name { font-size: 1.8rem; }
+.spec_list .list.tab_contents .item .flex {
+    flex-direction: column; /* Stack image, table, CTA */
+    align-items: center; /* Center items */
+}
+.spec_list .list.tab_contents .item .flex .link img.image { /* School image */
+    width: 80px; /* SP size */
+    height: 80px;
+    margin-bottom: 10px;
+}
+.spec_list .list.tab_contents .item .flex .spec_table {
+    width: 100%; /* Full width table */
+}
+.spec_list .list.tab_contents .item .flex .spec_table th,
+.spec_list .list.tab_contents .item .flex .spec_table td {
+    font-size: 1.3rem;
+    padding: 6px;
+}
+.spec_list .list.tab_contents .item .flex .spec_table br.sp { /* Show SP line breaks */
+    display: block;
+}
+.spec_list .list.tab_contents .item .flex .official_link_d1.mini_official_link_d1, /* Target the mini one */
+.spec_list .list.tab_contents .item .flex .mini_official_link_d1 { /* Simpler selector if unique */
+    margin-top: 10px;
+    width: 100%; /* Full width mini CTA */
+    padding: 10px;
+    font-size: 1.5rem;
+    height: auto; /* Adjust height for SP if needed */
+}
+.spec_list .list.tab_contents .item .flex .official_link_d1.pc {
+    display: none !important; /* Hide PC version of CTA in this context */
+}
+.spec_list .list.tab_contents .item .flex .spec_table tr.cta.sp { /* Show SP CTA row in table */
+    display: table-row !important; /* Or flex if table is display:flex */
+}
+.spec_list .list.tab_contents .item .flex .spec_table tr.cta.sp td {
+    border: none; /* Remove borders for CTA row if needed */
+    padding: 10px 0 0 0; /* Add padding for the CTA button */
+}
+
+
+/* 7. Footer (Adjustments if any for SP) */
+.footer .list {
+    flex-direction: column; /* Stack footer links */
+    gap: 0;
+}
+.footer .item .link {
+    display: block; /* Make links full width for easier tapping */
+    padding: 10px;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #555; /* Separator for stacked links */
+}
+.footer .item:last-child .link {
+    border-bottom: none;
+}
+
+
+/* 8. Other Elements (Search Form, Banners - SP styling) */
+.search_form { padding: 15px; margin: 20px auto; }
+.search_form .title { font-size: 1.8rem; }
+.search_form .form { flex-direction: column; gap: 15px; }
+.search_form .form select,
+.search_form .form button.submit {
+    width: 100%; /* Full width for form elements */
+    font-size: 1.5rem;
+}
+
+/* Absolute Banner (SP) - Often hidden or different placement */
+.absolute_banner {
+    /* display: none; /* Option: hide on SP */
+    /* Or, make it full width at bottom */
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+}
+.absolute_banner img { max-width: 100%; }
+.absolute_banner .close_btn {
+    top: 5px; /* Adjust if banner is smaller */
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+/* Return to Top Button (SP) */
+.return_top_btn {
+    bottom: 10px; /* Default position */
+    right: 10px;
+    /* If banner is full width and visible, might need to be above it */
+}
+.return_top_btn.above_banner { /* Add this class with JS if banner is active */
+    bottom: calc(10px + 50px + 10px); /* Example: banner_height + spacing */
+}
+
+.return_top_btn.active {
+    /* Might need adjustment if banner is also fixed at bottom */
+}
+.return_top_btn .return_top {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.advertise_message {
+    font-size: 1.2rem;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+/* Side Menu (SP) - from "フェーズ5" and sp.css */
+/* Basic structure is in sp.css, here are theme specific styles */
+.side_menu.sp { /* Already styled in sp.css for position, bg */
+    /* Theme specific colors or fonts */
+}
+.side_menu.sp .group .title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color-gray);
+}
+.side_menu.sp .list .item {
+    border-bottom: 1px solid var(--border-color-gray);
+}
+.side_menu.sp .list .item:last-child {
+    border-bottom: none;
+}
+.side_menu.sp .list .item .ranking_link {
+    display: flex;
+    align-items: center;
+    padding: 12px 5px;
+    text-decoration: none;
+    color: var(--text-color-dark);
+}
+.side_menu.sp .list .item .ranking_link:hover {
+    background-color: var(--light-gray-bg);
+}
+.side_menu.sp .list .item .ranking_link .image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+.side_menu.sp .list .item .ranking_link .ranking_title {
+    font-size: 1.5rem;
+}
+
+/* General Typography from Subtask Description */
+/* PC Main title (4.8rem) -> SP: 2.4rem */
+/* This was already handled in .main_visual .main_text_content h1, but if there are other main titles: */
+/* Example: .some_other_main_title_class { font-size: 2.4rem; } */
+
+/* PC Card headline (3.2rem) -> SP: 2.7rem */
+/* Already handled by .service .card .head .name */
+
+/* PC Section headline (2.2rem) -> SP: 1.6rem */
+/* .select_top3 > .wrap > .title is 1.8rem. If other section titles need 1.6rem: */
+/* Example: .another_section_title_class { font-size: 1.6rem; } */
+/* .service .card .contents_title is 1.6rem, which fits. */
+
+/* PC Body text (1.6rem) -> SP: 1.4rem (already in sp.css p tag, confirm if needed for other elements) */
+/* sp.css has p { font-size: 1.4rem; }. This is generally inherited. */
+/* .service .card .text is 1.4rem. */
+
+/* PC CTA text (2rem) -> SP: 1.8rem */
+/* .official_link_d1 is 1.8rem. */
+
+/* Ensure that these specific font sizes apply to the correct elements.
+   The provided CSS already incorporates many of these.
+   Adding !important for overrides if strictly needed, but prefer specificity. */

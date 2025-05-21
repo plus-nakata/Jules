@@ -1,0 +1,90 @@
+/* sp.css - Styles for max-width: 640px */
+
+.main_wrap {
+    flex-direction: column; /* Stack main and side if it were visible */
+}
+
+.main {
+    width: 100%; /* Full width for main content */
+}
+
+/* Hide PC-specific elements on SP */
+.pc {
+    display: none !important;
+}
+
+/* Show SP-specific elements (base.html uses .sp class for some images) */
+.sp {
+    display: block !important; /* Or inline, inline-block as appropriate */
+}
+/* Ensure .mv.sp (main visual for sp) is displayed correctly */
+img.mv.sp {
+    display: block; /* Or as needed by design */
+    margin-left: auto;
+    margin-right: auto;
+}
+img.mv.pc {
+    display: none !important; /* Hide PC main visual */
+}
+
+/* Hide PC sidebar and TOC */
+.side.pc,
+.toc.pc {
+    display: none !important;
+}
+
+/* Adjust .wrap padding for smaller screens if the 15px in style.css isn't enough or needs override */
+.wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* General text sizing for SP */
+p {
+    font-size: 1.4rem; /* 本文テキスト SP, as per タイポグラフィ */
+}
+/* Other global text adjustments if any */
+
+/* Basic styling for the hamburger menu button if it's not part of design1_sp.css */
+/* .hamburger-button (selector needs to be identified in base.html or common.js) { display: block; ... } */
+
+.side_menu.sp {
+    /* Assuming it's an off-canvas menu */
+    position: fixed;
+    top: 0;
+    right: -280px; /* Hidden by default, adjust width as needed */
+    width: 280px;
+    height: 100%;
+    background-color: var(--white-bg);
+    z-index: 1000;
+    transition: right 0.3s ease-in-out;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.side_menu.sp.open { /* Class added by JS to show the menu */
+    right: 0;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below menu, above content */
+}
+
+.overlay.active {
+    display: block;
+}
+
+.side_menu.sp .close { /* Styling for the close button inside the mobile menu */
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    cursor: pointer;
+}

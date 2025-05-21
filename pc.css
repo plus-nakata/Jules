@@ -1,0 +1,48 @@
+/* pc.css - Styles for min-width: 641px */
+
+body {
+    /* Ensure base font size for PC if not already set, or if specific overrides are needed.
+       style.css sets html { font-size: 62.5%; } which means 1.6rem = 16px.
+       This is consistent with "本文テキスト: 1.6rem（PC）"
+    */
+}
+
+.main_wrap {
+    display: flex; /* Enables flexbox for main and side */
+    justify-content: space-between; /* Adjust as needed, e.g., if sidebar has fixed width and main fluid */
+}
+
+.main {
+    width: 768px; /* As per 全体レイアウト */
+    /* background-color: var(--white-bg); Optionally, if main content area needs distinct background from body */
+}
+
+.side.pc { /* .pc class used in base.html for PC sidebar */
+    width: 192px; /* As per 全体レイアウト */
+    display: block !important; /* Ensure it's shown on PC */
+}
+
+.toc.pc { /* .pc class used in base.html for PC TOC */
+    display: block !important; /* Ensure it's shown on PC */
+    /* Further TOC styling will be in design1_pc.css */
+}
+
+/* Hide SP-specific elements on PC */
+.sp {
+    display: none !important;
+}
+
+/* General text sizing for PC, if different from style.css defaults */
+p {
+    font-size: 1.6rem; /* 本文テキスト PC */
+}
+
+/* Example of how specific title sizes might be generally set for PC,
+   but prefer component-specific styling in design1_pc.css */
+/* h1 { font-size: 4.8rem; } */ /* Too general, style specific h1s */
+
+/* If the content area within .main or cards needs a white background to contrast with body's light gray */
+.main > *, /* Direct children of main like .tab_wrap, .spec_list */
+.card { /* Card elements from base.html */
+    background-color: var(--white-bg); /* As per 全体レイアウト: コンテンツエリアは白背景(#FFFFFF) */
+}

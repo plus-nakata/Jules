@@ -1,0 +1,810 @@
+/* design1_pc.css */
+body.design1 { /* Assuming body has class 'design1' as in base.html */
+    /* background-color: var(--light-gray-bg); /* Already in style.css */
+}
+
+#body.design1_mv { /* ID from base.html */
+    /* Styles specific to this container if any */
+}
+
+.header {
+    background-color: var(--main-color); /* #1B3C65 */
+    color: var(--white-bg);
+    height: 60px; /* ヘッダー高さ PC */
+    padding: 0 20px; /* Add some padding */
+}
+
+.header .wrap {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header .logo img {
+    width: 162px; /* From base.html */
+    height: 40px;  /* From base.html */
+    vertical-align: middle;
+}
+
+.header .title {
+    font-size: 2.0rem; /* Adjust as needed, not specified directly for header h1 */
+    margin-left: 20px;
+    flex-grow: 1;
+    color: var(--white-bg);
+}
+
+.header .goto_top {
+    font-size: 1.4rem;
+    color: var(--white-bg);
+    text-decoration: none;
+}
+
+.main_visual {
+    background-color: var(--secondary-color); /* #7ACCF1 */
+    height: 320px; /* PC height */
+    /* Assuming .wrap inside .main_visual handles content alignment */
+    padding: 20px 0; /* Example padding */
+    position: relative; /* For positioning date label */
+}
+
+.main_visual .wrap {
+    display: flex; /* For left text, right image if that's the layout */
+    align-items: center;
+    justify-content: space-between; /* Example */
+    height: 100%;
+}
+
+.main_visual .sub_title { /* "2025年〇月最新" */
+    background-color: var(--accent-color); /* #F7B200 */
+    color: var(--text-color-dark); /* Or white if contrast is better */
+    padding: 5px 10px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    position: absolute; /* Or styled differently */
+    top: 10px;
+    left: 10px; /* Adjust positioning */
+    border-radius: 4px;
+}
+
+.main_visual h1 { /* Contains the image */
+    text-align: center; /* If image needs centering or specific alignment */
+}
+.main_visual h1 img.mv.pc {
+    height: auto; /* Max height was 434px in html, but container is 320px. */
+    max-height: calc(320px - 40px); /* Considering padding */
+    width: auto;
+    max-width: 100%;
+}
+/* Add styles for "左側に大きめの見出しテキスト" and "右側に装飾用画像を配置" if these are separate from the main kv.png */
+
+.select_top3 {
+    padding: 30px 0;
+}
+.select_top3 > .wrap > .title { /* "人気〇〇 TOP3" */
+    font-size: 2.2rem; /* セクション見出し PC */
+    text-align: center;
+    margin-bottom: 20px;
+}
+.top3_spec_table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.top3_spec_table td, .top3_spec_table th {
+    border: 1px solid var(--border-color-gray); /* Add borders for clarity */
+    padding: 10px;
+    vertical-align: top;
+}
+.top3_spec_table .rank img.num {
+    width: 64px;
+    height: 64px;
+}
+.top3_spec_table .image a {
+    display: block;
+    text-decoration: none;
+}
+.top3_spec_table .image img.image {
+    max-width: 100%; /* Control image size if 350px is too large for 1/3rd of 1000px wrap */
+    width: auto; /* Maintain aspect ratio */
+    height: 150px; /* Example fixed height, adjust as needed */
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.top3_spec_table .image .name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-top: 5px;
+}
+.top3_spec_table th[colspan="3"] {
+    background-color: var(--spec-table-header-bg); /* #EEEEEE */
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.top3_spec_table th[colspan="3"] .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.top3_spec_table th[colspan="3"] .flex img {
+    margin-right: 8px;
+}
+.top3_spec_table .contents {
+    font-size: 1.4rem;
+}
+.top3_spec_table .contents.evaluation .star_wrap { /* For starRateImg script output */
+    color: var(--accent-color); /* Star color */
+    font-size: 20px; /* Star size */
+    display: inline-block;
+}
+.top3_spec_table .contents.evaluation .sougou {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: block; /* Or inline with margin */
+    margin-top: 5px;
+}
+.top3_spec_table .price .value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+.top3_spec_table .price .note {
+    font-size: 1.2rem;
+    color: var(--text-color-medium);
+}
+.top3_spec_table .feature {
+    text-align: left;
+}
+.top3_spec_table .support .bold {
+    font-weight: bold;
+}
+.top3_spec_table .campaign ul {
+    list-style: disc;
+    padding-left: 20px; /* Indent list */
+    text-align: left;
+}
+.top3_spec_table .campaign ul li {
+    margin-bottom: 5px;
+}
+.top3_spec_table .cta {
+    padding: 20px 10px;
+}
+
+.service .card { /* .service is parent ul for cards */
+    border: 1px solid var(--border-color-gray); /* #DFE0E2 */
+    border-radius: 8px;
+    padding: 16px; /* 内部パディング PC */
+    margin-bottom: 40px; /* カード間マージン */
+    background-color: var(--white-bg); /* Already in pc.css, but confirm */
+}
+
+.service .card .head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.service .card .head .image { /* Ranking icon */
+    width: 64px;
+    height: 64px;
+    margin-right: 12px;
+}
+.service .card .head .name {
+    font-size: 3.2rem; /* カード見出し PC */
+    font-weight: bold;
+    color: var(--text-color-dark);
+}
+
+.service .card .tag_wrap {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0; /* Adjusted margin */
+}
+.service .card .tag {
+    display: inline-flex; /* Use inline-flex for content alignment */
+    align-items: center;
+    border-radius: 4px;
+    background: linear-gradient(152deg, #E7F1F9 0%, #6DC2FF 100%); /* As per example */
+    padding: 7px 12px;
+    font-size: 1.4rem; /* 14px */
+    font-weight: 700;
+    line-height: 1;
+    /* min-width: 180px; /* Removed fixed min-width */
+}
+.service .card .tag:before { /* For SVG icon, placeholder */
+    /* content: url('path/to/icon.svg'); */
+    /* filter: invert(1); /* Example if icon needs color change */
+    width: 16px; /* Example size */
+    height: 16px; /* Example size */
+    margin-right: 8px;
+    /* background-color: var(--main-color); /* Example using SVG as mask */
+    /* -webkit-mask-image: url(...); mask-image: url(...); */
+}
+
+.service .card .intro {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px; /* Gap between image and basic info */
+    margin-bottom: 16px;
+}
+.service .card .intro > a > .image { /* Product image link */
+    width: 280px; /* As per CSS example */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 4px; /* Slight rounding for product image */
+}
+.service .card .basic {
+    flex: 1; /* Takes remaining space */
+    /* width: 400px; /* CSS example had this, flex is more responsive */
+}
+.service .card .evaluation {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem; /* For text part of evaluation */
+}
+.service .card .evaluation .star_wrap { /* For starRateImg script output */
+    color: var(--accent-color); /* Star color #eb4 or #F7B200 */
+    font-size: 22px; /* Star size */
+    position: relative; /* For half star if implemented */
+    margin-right: 5px;
+}
+/* Star styling from example, assuming starRateImg outputs spans with .star and .star-half */
+.star_wrap .star:before { content: '★'; }
+.star_wrap .star-half:before { content: '★'; } /* Full star for half, then hide part */
+.star_wrap .star-half { position: relative; display: inline-block; }
+.star_wrap .star-half::after { /* Covers half the star */
+    content: ''; display: block; position: absolute;
+    width: 50%; height: 100%; top: 0; right: 0;
+    background-color: var(--white-bg); /* Or card background */
+    z-index: 1;
+}
+.service .card .sougou { /* Numeric rating */
+    font-weight: bold;
+    margin-left: 8px;
+    font-size: 1.7rem; /* Consistent with text part */
+}
+.service .card .catchcopy {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-top: 8px;
+    color: var(--text-color-dark);
+}
+.service .card .text { /* For "強調したいポイント" */
+    font-size: 1.6rem; /* 本文テキスト PC */
+    margin-top: 8px;
+    position: relative; /* For underline if it uses pseudo-elements */
+}
+/* .underline class is global in style.css */
+
+.service .button_area {
+    margin: 24px auto 0; /* Adjusted margin */
+    text-align: center;
+}
+.service .button_area .message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--text-color-dark);
+}
+
+/* Campaign section in card */
+.service .card .campaign {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color-gray);
+}
+.service .card .contents_title { /* Shared by campaign, skills,口コミ,おすすめ */
+    font-size: 2.0rem; /* Adjust as needed, slightly smaller than section titles */
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: center;
+    color: var(--main-color);
+}
+.service .card .contents_title .text { /* If there's an inner span */
+    /* display: inline-block; */
+    /* border-bottom: 2px solid var(--accent-color); */
+}
+.service .card .campaign .coupon_link img {
+    width: 100%;
+    max-width: 600px; /* As per HTML */
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+.service .card .campaign .campaign_list {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+.service .card .campaign .campaign_item {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+/* Spec Table in card */
+.service .card .spec_table { /* This is a div in card, not table element */
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid var(--border-color-gray);
+    border-radius: 4px;
+    margin: 24px 0;
+}
+.service .card .spec_table .item {
+    width: 33.333%; /* Three items per row */
+    text-align: center;
+    font-size: 1.4rem;
+}
+.service .card .spec_table .item:not(:last-child) {
+    border-right: 1px solid var(--border-color-gray);
+}
+.service .card .spec_table .spec_title {
+    background-color: var(--spec-table-header-bg); /* #EEEEEE */
+    padding: 8px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color-gray);
+}
+.service .card .spec_table .spec_content {
+    background-color: var(--spec-table-content-bg); /* #FAFAFA */
+    padding: 8px;
+    min-height: 60px; /* Ensure consistent height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.service .card .spec_table .spec_content em { /* ※備考 */
+    font-size: 1.2rem;
+    color: var(--text-color-medium);
+    font-style: normal;
+}
+
+/* Learn Skill section in card */
+.service .card .learn_skill {
+    margin: 24px 0;
+}
+.service .card .learn_skill .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.service .card .learn_skill .item img {
+    width: 60px; /* Adjust based on actual image sizes */
+    height: auto;
+}
+
+/* Kuchikomi (口コミ) section in card */
+.service .card .kuchikomi_list {
+    /* If horizontal scroll: display: flex; overflow-x: auto; gap: 16px; padding-bottom: 10px; */
+    /* For vertical list: */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Example responsive grid */
+    gap: 16px;
+    margin: 16px 0;
+}
+.service .card .kuchikomi_item {
+    border: 1px solid var(--border-color-gray);
+    border-radius: 4px;
+    padding: 12px;
+    background-color: var(--spec-table-content-bg); /* Light bg for contrast */
+}
+.service .card .kuchikomi_head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.service .card .kuchikomi_head .human { /* User icon */
+    width: 47px;
+    height: 60px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.service .card .kuchikomi_head .inner .title {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.service .card .kuchikomi_head .inner .author {
+    font-size: 1.3rem;
+    color: var(--text-color-medium);
+}
+.service .card .kuchikomi_item > .text { /* 口コミ本文 */
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+.service .card .kuchikomi_item .quote { /* 出典 */
+    font-size: 1.2rem;
+    color: var(--text-color-medium);
+    text-align: right;
+}
+
+/* Osusume Reason (編集部のおすすめポイント) in card */
+.service .card .osusume_reason {
+    margin: 24px 0;
+    padding: 16px;
+    background-color: var(--spec-table-content-bg); /* Light gray background */
+    border-radius: 4px;
+    text-align: center;
+}
+.service .card .osusume_reason .recommend_point {
+    margin-bottom: 10px;
+}
+.service .card .osusume_reason .recommend_point .icon {
+    width: 48px;
+    height: 48px;
+}
+.service .card .osusume_reason .contents_title { /* Already styled */
+    margin-bottom: 10px;
+}
+.service .card .osusume_reason p {
+    font-size: 1.5rem;
+    text-align: left;
+    line-height: 1.8;
+}
+/* .y_underline class is global in style.css */
+
+.official_link_d1 { /* General CTA button style */
+    margin-left: auto; /* For centering if parent is text-align: center */
+    margin-right: auto; /* For centering */
+    background-image: linear-gradient(45deg, var(--cta-gradient-start) 0%, var(--cta-gradient-end) 100%); /* #FFC107 -> #f76a35 */
+    box-shadow: 0px 10px 13px 0px rgba(255, 193, 7, 0.3);
+    border: 2px solid #FF8707;
+    border-radius: 34px; /* 角丸 */
+    color: var(--white-bg);
+    display: flex; /* For centering text and arrow */
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem; /* PC */
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+    width: 326px; /* PC width */
+    height: 54px; /* PC height */
+    line-height: normal; /* Remove if flex centering is enough */
+    overflow: hidden; /* For reflection and arrow */
+    padding: 0 20px; /* Padding for text and arrow */
+}
+/* Arrow animation (placeholder, assuming Font Awesome or SVG in HTML) */
+.official_link_d1::after {
+    content: '→'; /* Replace with actual arrow icon/font */
+    /* font-family: "Font Awesome 5 Free"; /* Example if using FA */
+    /* font-weight: 900; */
+    margin-left: 10px;
+    /* Basic animation */
+    transition: transform 0.2s ease-in-out;
+}
+.official_link_d1:hover::after {
+    transform: translateX(5px);
+}
+
+/* Reflection effect for .reflection class (often added to CTA) */
+.reflection { /* Already in example, ensure it's here if not global */
+    position: relative;
+    overflow: hidden; /* Crucial for the effect */
+}
+.reflection:before {
+    content: " ";
+    display: block; /* Make it a block to control its dimensions */
+    position: absolute;
+    top: -75%; /* Start off-screen */
+    left: -75%;
+    width: 50%; /* Width of the shine element */
+    height: 250%; /* Height of the shine element, must be tall */
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5), /* Semi-transparent white */
+        rgba(255, 255, 255, 0.2)
+    );
+    transform: rotate(45deg); /* Angle of the shine */
+    animation: is-reflection 3s ease-in-out infinite; /* Slower animation */
+    opacity: 0; /* Start transparent */
+}
+
+@keyframes is-reflection {
+    0% { transform: translateX(-100%) translateY(-25%) rotate(45deg); opacity: 0; }
+    50% { transform: translateX(100%) translateY(25%) rotate(45deg); opacity: 0.3; } /* Mid-animation */
+    100% { transform: translateX(200%) translateY(75%) rotate(45deg); opacity: 0; } /* End off-screen */
+}
+
+.spec_list {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--white-bg);
+    border-radius: 8px;
+}
+.spec_list .tab_wrap .tab {
+    display: flex;
+    border-bottom: 2px solid var(--main-color);
+    margin-bottom: 20px;
+}
+.spec_list .tab_wrap .tab_button {
+    padding: 10px 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--light-gray-bg);
+    color: var(--text-color-medium);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-right: 5px;
+    position: relative;
+    bottom: -2px; /* To align with border */
+}
+.spec_list .tab_wrap .tab_button.active {
+    background-color: var(--main-color);
+    color: var(--white-bg);
+    border-color: var(--main-color);
+}
+/* .tab_contents.active for displaying content, handled by JS */
+.spec_list .list.tab_contents .item { /* Each product row */
+    border: 1px solid var(--border-color-gray);
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.spec_list .list.tab_contents .item .name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.spec_list .list.tab_contents .item .name .service_name {
+    color: var(--main-color);
+}
+.spec_list .list.tab_contents .item .flex {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.spec_list .list.tab_contents .item .flex .link img.image { /* School image */
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.spec_list .list.tab_contents .item .flex .spec_table { /* This is an actual table */
+    flex-grow: 1;
+    border-collapse: collapse;
+}
+.spec_list .list.tab_contents .item .flex .spec_table th,
+.spec_list .list.tab_contents .item .flex .spec_table td {
+    border: 1px solid var(--border-color-gray);
+    padding: 8px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.spec_list .list.tab_contents .item .flex .spec_table th {
+    background-color: var(--spec-table-header-bg);
+    font-weight: bold;
+}
+.spec_list .list.tab_contents .item .flex .spec_table em { /* ※備考 */
+    font-size: 1.2rem;
+    color: var(--text-color-medium);
+    font-style: normal;
+    display: block;
+}
+.mini_official_link_d1 { /* Mini CTA button */
+    background-color: #F57C00; /* Simple orange */
+    color: var(--white-bg);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    min-width: 120px; /* Ensure some width */
+}
+.mini_official_link_d1:hover {
+    background-color: #E67000; /* Darker orange on hover */
+}
+.spec_list .list.tab_contents .item .flex .official_link_d1.pc { /* PC version of mini CTA */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.side.pc { /* Already positioned by pc.css */
+    padding: 20px;
+    background-color: var(--white-bg); /* If sidebar needs distinct bg */
+    border-left: 1px solid var(--border-color-gray); /* Example separator */
+}
+.side.pc .side_contents_item {
+    margin-bottom: 20px;
+}
+.side.pc .side_title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--main-color);
+}
+.side.pc .side_list_item {
+    margin-bottom: 10px;
+}
+.side.pc .side_list_item .link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--text-color-dark);
+}
+.side.pc .side_list_item .link:hover {
+    color: var(--accent-color);
+}
+.side.pc .side_list_item .link .image {
+    width: 40px; /* As per HTML */
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.toc.pc { /* Table of Contents */
+    width: 192px; /* Match sidebar or define own */
+    position: sticky; /* Sticky TOC */
+    top: 20px; /* Adjust as needed */
+    padding: 15px;
+    background-color: var(--spec-table-content-bg); /* Light background */
+    border-radius: 4px;
+    max-height: calc(100vh - 40px); /* Limit height and allow scroll */
+    overflow-y: auto;
+}
+.toc.pc .toc_list {
+    /* list-style-type: decimal; /* If numbering is desired */
+    /* padding-left: 20px; */
+}
+.toc.pc .toc_list li a {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: var(--text-color-medium);
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color-gray);
+}
+.toc.pc .toc_list li:last-child a {
+    border-bottom: none;
+}
+.toc.pc .toc_list li a:hover,
+.toc.pc .toc_list li.active a { /* Active state for scrollspy */
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.footer {
+    background-color: var(--text-color-dark); /* Dark background for footer */
+    color: var(--white-bg);
+    padding: 30px 0;
+    margin-top: 30px;
+}
+.footer .list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    text-align: center;
+}
+.footer .item .link {
+    font-size: 1.3rem;
+    color: var(--white-bg);
+    text-decoration: none;
+    padding: 5px 10px;
+}
+.footer .item .link:hover {
+    text-decoration: underline;
+}
+
+/* SEARCH_FORM */
+.search_form {
+    padding: 20px;
+    background-color: var(--secondary-color); /* Light blue background */
+    border-radius: 8px;
+    margin: 30px auto; /* .wrap is on parent */
+}
+.search_form .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: 15px;
+}
+.search_form .form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.search_form .form select {
+    padding: 10px;
+    border: 1px solid var(--border-color-gray);
+    border-radius: 4px;
+    font-size: 1.4rem;
+    min-width: 150px; /* Min width for select */
+    flex-grow: 1; /* Allow select to grow */
+}
+.search_form .form button.submit {
+    background-color: var(--accent-color);
+    color: var(--text-color-dark);
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.6rem;
+    flex-grow: 1; /* Allow button to grow */
+}
+.search_form .form button.submit:hover {
+    opacity: 0.9;
+}
+
+/* Absolute Banner (PC) */
+.absolute_banner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 990;
+}
+.absolute_banner img {
+    max-width: 200px; /* Adjust size as needed */
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.absolute_banner .close_btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--text-color-dark);
+    color: var(--white-bg);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid var(--white-bg);
+}
+.absolute_banner .close_btn:before {
+    content: '×'; /* Simple X for close */
+}
+
+/* Return to Top Button */
+.return_top_btn {
+    position: fixed;
+    bottom: 20px; /* Adjust to not overlap banner */
+    right: 20px; /* Adjust if banner is on same side */
+    z-index: 990;
+    /* Initially hidden, shown by JS based on scroll_judge */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.return_top_btn.active { /* Class added by JS */
+    opacity: 1;
+    visibility: visible;
+}
+.return_top_btn .return_top {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: var(--main-color);
+    color: var(--white-bg);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px; /* For vertical icon centering */
+    font-size: 24px; /* Icon size */
+}
+.return_top_btn .return_top:hover {
+    background-color: var(--accent-color);
+}
+/* Adjust .absolute_banner and .return_top_btn positions if both are on lower right */
+.absolute_banner { bottom: 80px; /* Example: if return_top is below it */ }
+/* The above adjustment is commented out to match provided CSS, uncomment if needed */
+
+/* advertise_message */
+.advertise_message { /* "※本ページはプロモーションが含まれています​" */
+    font-size: 1.3rem;
+    color: var(--text-color-medium);
+    text-align: center;
+    padding: 10px;
+    background-color: var(--spec-table-content-bg);
+    border-radius: 4px;
+    margin-bottom: 20px;
+}

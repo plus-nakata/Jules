@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%; /* Makes 1rem = 10px for easier rem calculations */
+}
+body {
+    font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    line-height: 1.6;
+    background-color: #F3F3F3; /* As per 全体レイアウト */
+    color: #444444; /* Default text color from カラーパレット */
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul, li {
+    list-style: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+:root {
+    --main-color: #1B3C65;
+    --secondary-color: #7ACCF1;
+    --accent-color: #F7B200;
+    /* CTA button gradient is complex, define solid colors if used or note for specific button styles */
+    --cta-gradient-start: #FFC107;
+    --cta-gradient-end: #f76a35;
+    --white-bg: #FFFFFF;
+    --light-gray-bg: #F3F3F3;
+    --text-color-dark: #444444;
+    --text-color-medium: #666666;
+    --border-color-gray: #DFE0E2; /* From カードデザイン */
+    --spec-table-header-bg: #EEEEEE; /* From カードデザイン */
+    --spec-table-content-bg: #FAFAFA; /* From カードデザイン */
+}
+
+.wrap {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px; /* Add some padding for smaller screens */
+    padding-right: 15px; /* Add some padding for smaller screens */
+}
+
+/* Base font sizes are in base.html's responsive CSS links, here define general tags */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: var(--text-color-dark);
+}
+p {
+    font-size: 1.6rem; /* Default PC body text */
+    color: var(--text-color-dark);
+}
+/* Specific heading sizes will be in pc.css/sp.css and design1_pc.css/design1_sp.css */
+
+/* Main title example (will be refined in design1 specific css) */
+/* .main_visual h1 (example selector) { font-size: 4.8rem; } */
+/* Card heading example */
+/* .card .name (example selector) { font-size: 3.2rem; } */
+/* Section heading example */
+/* .select_top3 .title (example selector) { font-size: 2.2rem; } */
+
+.underline {
+    background: linear-gradient(transparent 70%, #F7B200 20%); /* As per タイポグラフィ (accent-color) */
+    font-weight: bold; /* Often used with underlines for emphasis */
+}
+
+.y_underline {
+    background: linear-gradient(transparent 60%, var(--accent-color) 40%); /* Adjust percentages for a 'marker' feel */
+    /* Or if it's just bold text on a yellow background:
+    background-color: var(--accent-color);
+    color: var(--text-color-dark); // Or #000
+    padding: 0.1em 0.2em;
+    */
+}
